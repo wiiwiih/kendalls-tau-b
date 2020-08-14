@@ -1,17 +1,16 @@
 import math
 
-def kendalls_tau_b(entries):
+# Calculate Kendall's Tau-b for a list of ListEntries
+def calculate(entries):
+    # Count the number of concordant and disconcordant pairs
     n_conc, n_disconc = count_concordant_pairs(entries)
+    # Count the number of tied pairs in each of the rankings
     n_ties1, n_ties2 = count_ties(entries)
 
-    #print("Concordant " + str(n_conc) + ", disconcordant " + str(n_disconc))
-    #print("Ties 1 " + str(n_ties1) + ", ties 2 " + str(n_ties2))
-
+    # The number of ranked items
     n_entries = len(entries)
+    # The number of pairs that can be combined from the ranked items 
     n_pairs = n_entries * (n_entries - 1) / 2
-    
-    #print("Entries " + str(n_entries))
-    #print("Pairs " + str(n_pairs))
 
     tau = (n_conc - n_disconc) / math.sqrt((n_pairs - n_ties1) * (n_pairs - n_ties2))
 
@@ -51,4 +50,3 @@ def count_ties(entries):
                 n_ties2 += 1
 
     return n_ties1, n_ties2
-
