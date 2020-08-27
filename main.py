@@ -34,13 +34,13 @@ def main():
         print("p = " + str(p))
         print("----------------------------------------")
     else:
-        w, chi_sqr, p = kendalls_w.calculate(RANKS1, RANKS2, RANKS3, RANKS4)
+        w, f, p = kendalls_w.calculate(RANKS1, RANKS2, RANKS3, RANKS4)
 
         print("----------------------------------------")
         print("Kendall's W:")
         print("----------------------------------------")
         print("w = " + str(w))
-        print("x^2 = " + str(chi_sqr))
+        print("f = " + str(f))
         print("p = " + str(p))
         print("----------------------------------------")
 

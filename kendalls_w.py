@@ -20,9 +20,9 @@ def calculate(ranks1, ranks2, ranks3, ranks4):
 
     w = (12 * r_sum - 3 * m ** 2 * n * (n + 1) ** 2) / (m ** 2 * n * (n ** 2 - 1) - m * t_sum)
 
-    chi_sqr, p = test_significance(w, m, n)
+    f, p = test_significance(w, m, n)
 
-    return w, chi_sqr, p
+    return w, f, p
 
 
 def correct_ties(ranks):
@@ -59,10 +59,11 @@ def calculate_r_sum(ranks1, ranks2, ranks3, ranks4):
     return r_sum
 
 def test_significance(w, m, n):
-    chi_sqr = m  * (n - 1) * w
+    f = w * (m - 1) / (1 - w)
 
-    df = n - 1
+    df1 = n - 1 - (2 / m)
+    df2 = (m - 1) * df1
 
-    p = 1 - st.chi2.cdf(chi_sqr, df)
+    p = 1 - st.f.cdf(f, df1, df2)
 
-    return chi_sqr, p
+    return f, p
